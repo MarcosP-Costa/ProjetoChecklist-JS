@@ -1,6 +1,13 @@
 let tokenJwt;
 let finalizar = document.getElementById('closeApp')
-let novaTarefa = document.getElementById('botaoNovaTarefa')
+let botaoNovaTarefa = document.getElementById('botaoNovaTarefa')
+
+// ----------------objeto nova tarefa (Felipe) - necessário para criar novas tarefas -----------------
+let novaTarefaObject = {
+    'description': '',
+    'completed': false
+} 
+//-------------------------------------------------------
 
 /* Função é chamada automaticamente ao carregar a página de tarefas */
 onload = function () {
@@ -25,7 +32,6 @@ onload = function () {
 
 /* Função do tipo assincrona */
 async function buscaDadosUsuario() {
-
     /* Cria o arquivo de configuração */
     let configRequest = {
         headers: {  //Cabeçalho da requisição
@@ -65,7 +71,7 @@ finalizar.addEventListener('click', ()=>{
     location.href = 'index.html'
 })//---------------------------------------------------------
 
-//------------------busca tarefas API (Felipe) --------------
+//------------------busca tarefas API (Felipe) - feito com promise e sem a validação específica de cada erro --------------
 function buscarTarefas(){
     let configRequest = {
         headers : {
@@ -90,3 +96,48 @@ function buscarTarefas(){
     })
 }
 //-----------------------------------------------------------------
+
+//----------------- funçao para criação de tarefas na API (Felipe) - feito com promise ---------------------
+function criarTarefa(novaTarefaObjectJSON){
+    
+    let configRequest = {
+        method: 'POST',
+        headers : {
+            'content-type': 'application/json',
+            'authorization': tokenJwt
+        },
+        body: novaTarefaObjectJSON
+    }
+
+    fetch('https://ctd-todo-api.herokuapp.com/v1/tasks', configRequest)
+    .then(resultado => {
+        if(resultado.status == 201 || resultado.status == 200){
+            return resultado.json()
+        } else {
+            throw 'Algum erro ocorreu'
+        }
+    })
+    .then( resultado => {
+        console.log(resultado);
+    })
+    .catch(error => {
+        alert(error);
+    })
+}
+//-----------------------------------------------------------------
+
+//----------------- adicionando evento no botao para adicionar tarefa ---------------------
+botaoNovaTarefa.addEventListener('click', event =>{
+    let novaTarefa = document.getElementById('novaTarefa').value
+    novaTarefaObject.description = novaTarefa
+    let novaTarefaObjectJSON = JSON.stringify(novaTarefaObject)
+    alert(novaTarefaObjectJSON)
+
+    if(novaTarefa.length < 5){
+        alert('Não há novas tarefas a serem inseridas')
+        event.preventDefault()
+    }else{
+        criarTarefa(novaTarefaObjectJSON)
+        event.preventDefault()
+    }
+})
