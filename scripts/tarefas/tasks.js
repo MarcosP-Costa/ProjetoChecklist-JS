@@ -1,4 +1,5 @@
 let tokenJwt;
+let finalizar = document.getElementById('closeApp')
 
 /* Função é chamada automaticamente ao carregar a página de tarefas */
 onload = function () {
@@ -56,4 +57,7 @@ function exibeNomeUsuario(objetoUsuario) {
     p.innerText = `${objetoUsuario.firstName} ${objetoUsuario.lastName}`
 }
 
-
+finalizar.addEventListener('click', ()=>{
+    sessionStorage.removeItem('jwt')
+    location.href = 'index.html'
+})
