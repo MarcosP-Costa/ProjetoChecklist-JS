@@ -1,5 +1,6 @@
 let tokenJwt;
 let finalizar = document.getElementById('closeApp')
+let novaTarefa = document.getElementById('botaoNovaTarefa')
 
 /* Função é chamada automaticamente ao carregar a página de tarefas */
 onload = function () {
@@ -18,6 +19,7 @@ onload = function () {
 
         //Chama a função que busca os dados do usuário na API
         buscaDadosUsuario()
+        buscarTarefas()
     }
 }
 
@@ -52,12 +54,39 @@ async function buscaDadosUsuario() {
 
 /* Altera as informações do usuário na página */
 function exibeNomeUsuario(objetoUsuario) {
-    console.log(objetoUsuario);
+    //console.log(objetoUsuario);
     let p = document.getElementById("nomeUsuario");
     p.innerText = `${objetoUsuario.firstName} ${objetoUsuario.lastName}`
 }
 
+//------------------finalizar sessao (Felipe) --------------
 finalizar.addEventListener('click', ()=>{
     sessionStorage.removeItem('jwt')
     location.href = 'index.html'
-})
+})//---------------------------------------------------------
+
+//------------------busca tarefas API (Felipe) --------------
+function buscarTarefas(){
+    let configRequest = {
+        headers : {
+            'content-type': 'application/json',
+            'authorization': tokenJwt
+        }
+    }
+
+    fetch('https://ctd-todo-api.herokuapp.com/v1/tasks', configRequest)
+    .then( resultado => {
+        if(resultado.status == 200){
+            return resultado.json()
+        }else{
+            throw 'Algum problema ocorreu'
+        }
+    })
+    .then( resultado => {
+        console.log(resultado);
+    })
+    .catch(error => {
+        console.log(error);
+    })
+}
+//-----------------------------------------------------------------
