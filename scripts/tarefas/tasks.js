@@ -1,12 +1,13 @@
 let tokenJwt;
 let finalizar = document.getElementById('closeApp')
 let botaoNovaTarefa = document.getElementById('botaoNovaTarefa')
+let testarPut = document.getElementById('testarPut')
 
 // ----------------objeto nova tarefa (Felipe) - necessário para criar novas tarefas -----------------
 let novaTarefaObject = {
     'description': '',
-    'completed': false
-} 
+    'completed': true
+}
 //-------------------------------------------------------
 
 /* Função é chamada automaticamente ao carregar a página de tarefas */
@@ -34,8 +35,8 @@ onload = function () {
 async function buscaDadosUsuario() {
     /* Cria o arquivo de configuração */
     let configRequest = {
-        headers: {  //Cabeçalho da requisição
-            "Authorization": tokenJwt  //Token JWT esperado pela API
+        headers: { //Cabeçalho da requisição
+            "Authorization": tokenJwt //Token JWT esperado pela API
         },
     }
 
@@ -66,21 +67,24 @@ function exibeNomeUsuario(objetoUsuario) {
 }
 
 //------------------finalizar sessao (Felipe) --------------
-finalizar.addEventListener('click', ()=>{
-    sessionStorage.removeItem('jwt')
-    location.href = 'index.html'
-})//---------------------------------------------------------
+finalizar.addEventListener('click', () => {
+    if (confirm("Tem Certeza?")) {
+        sessionStorage.removeItem('jwt')
+        location.href = 'index.html'
+    }
+}) //---------------------------------------------------------
 
 //------------------busca tarefas API (Felipe) - feito com promise e sem a validação específica de cada erro --------------
-function buscarTarefas(){
+function buscarTarefas() {
     let configRequest = {
-        headers : {
+        headers: {
             'content-type': 'application/json',
             'authorization': tokenJwt
         }
     }
 
     fetch('https://ctd-todo-api.herokuapp.com/v1/tasks', configRequest)
+<<<<<<< HEAD
     .then( resultado => {
         if(resultado.status == 200){
             return resultado.json()
@@ -95,15 +99,37 @@ function buscarTarefas(){
     .catch(error => {
         console.log(error);
     })
+=======
+        .then(resultado => {
+            if (resultado.status == 200 || resultado.status == 201) {
+                return resultado.json()
+            } else {
+                throw 'Algum problema ocorreu'
+            }
+        })
+        .then(resultado => {
+
+            for (tarefa of resultado) {
+                if (tarefa.completed) {
+                    renderizaTarefasFinalizadas(tarefa)
+                } else {
+                    renderizaTarefasPendentes(tarefa)
+                }
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        })
+>>>>>>> 07afd1733e054584106b0d9996f07a05398338b3
 }
 //-----------------------------------------------------------------
 
 //----------------- funçao para criação de tarefas na API (Felipe) - feito com promise ---------------------
-function criarTarefa(novaTarefaObjectJSON){
-    
+function criarTarefa(novaTarefaObjectJSON) {
+
     let configRequest = {
         method: 'POST',
-        headers : {
+        headers: {
             'content-type': 'application/json',
             'authorization': tokenJwt
         },
@@ -111,34 +137,107 @@ function criarTarefa(novaTarefaObjectJSON){
     }
 
     fetch('https://ctd-todo-api.herokuapp.com/v1/tasks', configRequest)
-    .then(resultado => {
-        if(resultado.status == 201 || resultado.status == 200){
-            return resultado.json()
-        } else {
-            throw 'Algum erro ocorreu'
-        }
-    })
-    .then( resultado => {
-        console.log(resultado);
-    })
-    .catch(error => {
-        alert(error);
-    })
+        .then(resultado => {
+            if (resultado.status == 201 || resultado.status == 200) {
+                return resultado.json()
+            } else {
+                throw 'Algum erro ocorreu'
+            }
+        })
+        .then(resultado => {
+            window.location.reload();
+        })
+        .catch(error => {
+            alert(error);
+        })
 }
 //-----------------------------------------------------------------
 
 //----------------- adicionando evento no botao para adicionar tarefa ---------------------
-botaoNovaTarefa.addEventListener('click', event =>{
-    let novaTarefa = document.getElementById('novaTarefa').value
-    novaTarefaObject.description = novaTarefa
+botaoNovaTarefa.addEventListener('click', event => {
+    event.preventDefault()
+    let novaTarefa = document.getElementById('novaTarefa')
+    novaTarefaObject.description = novaTarefa.value
     let novaTarefaObjectJSON = JSON.stringify(novaTarefaObject)
-    alert(novaTarefaObjectJSON)
-
-    if(novaTarefa.length < 5){
+    //console.log(novaTarefaObjectJSON)
+    if (novaTarefa.value.length < 5) {
         alert('Não há novas tarefas a serem inseridas')
-        event.preventDefault()
-    }else{
+    } else {
         criarTarefa(novaTarefaObjectJSON)
-        event.preventDefault()
+        novaTarefa.value = ""
+        
     }
 })
+
+
+
+
+//------------------------função destinada a remover espaço em branco----------------------------
+function removerEspacoBranco(texto) {
+    return texto.trim()
+}
+
+
+async function deletarTarefa(idParam) {
+    let configRequest = {
+        method: "DELETE",
+        headers: {
+            "Content-type": "application/json",
+            "id": idParam,
+            "Authorization": tokenJwt
+        },
+    }
+    try {
+        let resposta = await fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${idParam}`, configRequest)
+        if (resposta.status == 200 || resposta.status == 201) {
+            let respostaConvertida = await resposta.json()
+            console.log(respostaConvertida);
+            window.location.reload();
+        } else {
+            throw "Problema ao Deletar"
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+
+
+
+
+
+
+async function atualizarTarefa() {
+    let configRequest = {
+        method: "PUT",
+        headers: {
+            "Content-type": "application/json",
+            "id": "17697",
+            "Access-Control-Allow-Origin": "no-cors",
+            "Authorization": tokenJwt
+        },
+        body: {
+            "description": "Aprender Javascript",
+            "completed": false
+        }
+    }
+    try {
+        let resposta = await fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/17697`, configRequest)
+        if (resposta.status == 200 || resposta.status == 201) {
+            let respostaConvertida = await resposta.json();
+            console.log(respostaConvertida);
+        } else {
+            throw resposta
+        }
+    } catch (error) {
+
+    }
+}
+
+
+function pegarId(tarefaClicada)
+{
+    deletarTarefa(tarefaClicada)
+    
+}
