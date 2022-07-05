@@ -1,7 +1,7 @@
 let tokenJwt;
 let finalizar = document.getElementById('closeApp')
 let botaoNovaTarefa = document.getElementById('botaoNovaTarefa')
-let testarPut = document.getElementById('testarPut')
+
 
 // ----------------objeto nova tarefa -----------------
 let novaTarefaObject = {
@@ -181,10 +181,17 @@ function pegarIdDeletar(tarefaClicada)
     
 }
 
-async function atualizarTarefa(idParam) {
-    let bodyNormal = {
-        "description": prompt("Qual o nome da tarefa?"), 
-        "completed": confirm("Tarefa Finalizada?")//substituir isso pelo radioButton que a Mari criou
+async function atualizarStatusTarefa(idParam, statusParam) { // atualiza status da tarefa
+    let bodyNormal
+    console.log(statusParam);
+    if (statusParam) {
+        bodyNormal = {
+            "completed": false
+        }
+    } else {
+        bodyNormal = {
+            "completed": true
+        }
     }
     let bodyJson = JSON.stringify(bodyNormal)
     let configRequest = {
@@ -211,7 +218,33 @@ async function atualizarTarefa(idParam) {
     }
 }
 
-function pegarIdAtualizar(tarefaClicada)
-{
-    atualizarTarefa(tarefaClicada)
+async function atualizarTextoTarefa(idParam) { // atualiza o texto da tarefa
+    let bodyNormal = {
+        "description": prompt("Atualizar Tarefa: ")
+    }
+    let bodyJson = JSON.stringify(bodyNormal)
+    let configRequest = {
+        method: "PUT",
+        headers: {
+            "Content-type": "application/json",
+            "id": idParam,
+            "Access-Control-Allow-Origin": "*",
+            "Authorization": tokenJwt
+        },
+        body: bodyJson
+    }
+    console.log(bodyJson);
+    try {
+        let resposta = await fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${idParam}`, configRequest)
+        if (resposta.status == 200 || resposta.status == 201) {
+            let respostaConvertida = await resposta.json();
+            console.log(respostaConvertida);
+            window.location.reload();
+        } else {
+            throw resposta
+        }
+    } catch (error) {
+
+    }
 }
+
