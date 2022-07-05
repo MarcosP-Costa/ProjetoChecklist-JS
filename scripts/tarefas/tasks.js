@@ -231,9 +231,5 @@ function pegarIdAtualizar(tarefaClicada)
     atualizarTarefa(tarefaClicada)
 }
 
-testarPut.addEventListener('click', event => {
-    event.preventDefault()
-    atualizarTarefa()
-})
 
 
