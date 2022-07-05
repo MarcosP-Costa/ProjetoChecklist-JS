@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 *{
@@ -46,24 +46,27 @@ form{
     max-width: 350px;
     min-width: 300px;
     margin: 0 40px 0 40px;
-    border-radius: 15px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
-    /*background-color: rgb(101, 78, 154);*/
-    background-color: #322855;
-    color: #CAEDEB;
-    margin-top: 10em;
+    box-shadow: 10px 5px 5px #2f074370;
+    background: #43cea2; 
+    background: -webkit-linear-gradient(to right, #3686d6cc, #43cea2b9);  
+    background: linear-gradient(to right, #3686d6cc, #43cea2b9);
+    margin-top: 5em;
 
 }
+
+
 
 #form-title,
 #form-subtitle{
     padding: 5px;
     margin: 20px 0 10px;
     align-self: center;
-    font-family: 'Titan One', cursive;
+    font-family: 'Kantumruy Pro', sans-serif;
     letter-spacing: 2px;
-    color: #ffa200;
+    color: #2F0743;
 }
 
 #form-subtitle{
@@ -73,7 +76,7 @@ form{
 
 label{
     margin: 0 0 5px 20px;
-    color: #ffa200;
+    color: #2F0743;
 }
 
 input{
@@ -86,7 +89,7 @@ small{
     font-size: 12px;
     margin: 0 20px 10px 20px;
     visibility: hidden;
-    color: #CAEDEB;
+    color: #2F0743;
 }
 
 #login-button,
@@ -95,9 +98,17 @@ small{
     padding: 15px;
     border-radius: 50px;
     font-size: 20px;
-    background-color: #fbd99f;
-    color: #322855;
+    background-color: #073d4bb7;
+    color: #2F0743;
     border: none;
+}
+
+ion-icon {
+    font-size: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 7px;
+    margin-top: -3px;
 }
 
 a{
