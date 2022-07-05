@@ -6,7 +6,7 @@ let testarPut = document.getElementById('testarPut')
 // ----------------objeto nova tarefa (Felipe) - necessário para criar novas tarefas -----------------
 let novaTarefaObject = {
     'description': '',
-    'completed': true
+    'completed': ''
 }
 //-------------------------------------------------------
 
@@ -41,16 +41,11 @@ async function buscaDadosUsuario() {
     }
 
     try { //Tenta executar as seguintes ações...
-
         let resposta = await fetch("https://ctd-todo-api.herokuapp.com/v1/users/getMe", configRequest);
 
         if (resposta.status == 200) {
-            let respostaConvertida = await resposta.json();
-            //console.log(respostaConvertida);
-
-            //Chama a função que exibe/altera o nome do usuário e envia o objeto capturado na API
-            exibeNomeUsuario(respostaConvertida);
-
+            let respostaConvertida = await resposta.json(); //console.log(respostaConvertida);
+            exibeNomeUsuario(respostaConvertida); //Chama a função que exibe/altera o nome do usuário e envia o objeto capturado na API
         } else {
             throw "Problema ao buscar o usuário na API";
         }
@@ -66,15 +61,15 @@ function exibeNomeUsuario(objetoUsuario) {
     p.innerText = `${objetoUsuario.firstName} ${objetoUsuario.lastName}`
 }
 
-//------------------finalizar sessao (Felipe) --------------
+//------------------ finalizar sessao --------------
 finalizar.addEventListener('click', () => {
     if (confirm("Tem Certeza?")) {
         sessionStorage.removeItem('jwt')
         location.href = 'index.html'
     }
-}) //---------------------------------------------------------
+})
 
-//------------------busca tarefas API (Felipe) - feito com promise e sem a validação específica de cada erro --------------
+//------------------busca tarefas API --------------
 function buscarTarefas() {
     let configRequest = {
         headers: {
@@ -105,7 +100,6 @@ function buscarTarefas() {
             console.log(error);
         })
 }
-//-----------------------------------------------------------------
 
 //----------------- funçao para criação de tarefas na API (Felipe) - feito com promise ---------------------
 function criarTarefa(novaTarefaObjectJSON) {
@@ -140,7 +134,9 @@ function criarTarefa(novaTarefaObjectJSON) {
 botaoNovaTarefa.addEventListener('click', event => {
     event.preventDefault()
     let novaTarefa = document.getElementById('novaTarefa')
+    let statusNovaTarefa = document.querySelector('input[name="status-nova-tarefa"]:checked').value
     novaTarefaObject.description = novaTarefa.value
+    novaTarefaObject.completed = statusNovaTarefa
     let novaTarefaObjectJSON = JSON.stringify(novaTarefaObject)
     //console.log(novaTarefaObjectJSON)
     if (novaTarefa.value.length < 5) {
@@ -148,18 +144,13 @@ botaoNovaTarefa.addEventListener('click', event => {
     } else {
         criarTarefa(novaTarefaObjectJSON)
         novaTarefa.value = ""
-        
     }
 })
-
-
-
 
 //------------------------função destinada a remover espaço em branco----------------------------
 function removerEspacoBranco(texto) {
     return texto.trim()
 }
-
 
 async function deletarTarefa(idParam) {
     let configRequest = {
@@ -186,15 +177,11 @@ async function deletarTarefa(idParam) {
 
 }
 
-
-
 function pegarIdDeletar(tarefaClicada)
 {
     deletarTarefa(tarefaClicada)
     
 }
-
-
 
 async function atualizarTarefa(idParam) {
     let bodyNormal = {

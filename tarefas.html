@@ -39,12 +39,12 @@
   <form class="nova-tarefa">
     <div class="not-done "></div>
     <input id="novaTarefa" type="text" placeholder="Nova tarefa">
+    
     <!-- radio button -->
-    <input type="radio">
-    <label class="radio-label" for="novaTarefahtml">Pendente</label>
-
-    <input type="radio">
-    <label class="radio-label" for="html">Completo</label>
+    <input type="radio" id="pendente" name="status-nova-tarefa" value="false" checked>
+    <label class="radio-label" for="pendente">Pendente</label>
+    <input type="radio" id="completo" name="status-nova-tarefa" value="true">
+    <label class="radio-label" for="completo">Completo</label>
 
     <button id="botaoNovaTarefa" type="submit">
       <img src="./imagens/plus.png" alt="Adicionar uma nova tarefa">
