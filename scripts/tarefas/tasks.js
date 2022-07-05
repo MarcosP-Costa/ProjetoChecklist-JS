@@ -90,6 +90,7 @@ function buscarTarefas(){
     })
     .then( resultado => {
         console.log(resultado);
+        
     })
     .catch(error => {
         console.log(error);
