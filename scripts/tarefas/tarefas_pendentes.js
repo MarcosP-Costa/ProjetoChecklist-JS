@@ -4,12 +4,13 @@ function renderizaTarefasPendentes(tarefa){
     let li = document.createElement("li");
     li.classList.add("tarefa")
 
-    li.innerHTML = //troquei a div "not-done" por botao, para executar a função pegarIdAtualizar
+    li.innerHTML = //troquei a div "not-done" por botao, para executar a função pegarIdAtualizarStatus
     `
-    <button class="not-done" id="${tarefa.id} "onClick="pegarIdAtualizar(this.id)""></button> 
+    <button class="not-done" id="${tarefa.id}" onClick="atualizarStatusTarefa(this.id, false)" ></button> 
     <div class="descricao">
         <p class="nome">${tarefa.description}</p>
-        <p class="timestamp"><i class="far fa-calendar-alt"></i> ${tarefa.createdAt}</p>
+        
+        <p class="timestamp"> <button class="far fa-trash-alt" id="${tarefa.id}" onClick="atualizarTextoTarefa(this.id)"> Editar </button>  <i class="far fa-calendar-alt"></i> ${tarefa.createdAt}</p>
     </div>
     `
     listaULPendentes.appendChild(li)
