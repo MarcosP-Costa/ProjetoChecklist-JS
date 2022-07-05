@@ -172,7 +172,6 @@ async function deletarTarefa(idParam) {
     } catch (error) {
         console.log(error);
     }
-
 }
 
 function pegarIdDeletar(tarefaClicada)
