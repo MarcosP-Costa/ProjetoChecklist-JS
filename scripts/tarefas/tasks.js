@@ -3,12 +3,11 @@ let finalizar = document.getElementById('closeApp')
 let botaoNovaTarefa = document.getElementById('botaoNovaTarefa')
 let testarPut = document.getElementById('testarPut')
 
-// ----------------objeto nova tarefa (Felipe) - necessário para criar novas tarefas -----------------
+// ----------------objeto nova tarefa -----------------
 let novaTarefaObject = {
     'description': '',
     'completed': ''
 }
-//-------------------------------------------------------
 
 /* Função é chamada automaticamente ao carregar a página de tarefas */
 onload = function () {
@@ -128,7 +127,6 @@ function criarTarefa(novaTarefaObjectJSON) {
             alert(error);
         })
 }
-//-----------------------------------------------------------------
 
 //----------------- adicionando evento no botao para adicionar tarefa ---------------------
 botaoNovaTarefa.addEventListener('click', event => {
@@ -217,6 +215,3 @@ function pegarIdAtualizar(tarefaClicada)
 {
     atualizarTarefa(tarefaClicada)
 }
-
-
-
