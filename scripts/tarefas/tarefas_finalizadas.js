@@ -10,7 +10,7 @@ function renderizaTarefasFinalizadas(tarefa) {
     <p class="nome">${tarefa.description}</p>
     <div>
         <button><i id="${tarefa.id}" class="fas fa-undo-alt change"></i></button>
-        <button><i id="${tarefa.id}" class="far fa-trash-alt"></i></button>
+        <button id="${tarefa.id}" onClick="pegarId(this.id)"><i class="far fa-trash-alt"></i></button>
     </div>
     </div>
 `

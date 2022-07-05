@@ -95,7 +95,6 @@ function buscarTarefas() {
 
             for (tarefa of resultado) {
                 if (tarefa.completed) {
-                    console.log(tarefa.description);
                     renderizaTarefasFinalizadas(tarefa)
                 } else {
                     renderizaTarefasPendentes(tarefa)
@@ -129,7 +128,7 @@ function criarTarefa(novaTarefaObjectJSON) {
             }
         })
         .then(resultado => {
-            console.log(resultado);
+            window.location.reload();
         })
         .catch(error => {
             alert(error);
@@ -149,6 +148,7 @@ botaoNovaTarefa.addEventListener('click', event => {
     } else {
         criarTarefa(novaTarefaObjectJSON)
         novaTarefa.value = ""
+        
     }
 })
 
@@ -160,13 +160,6 @@ function removerEspacoBranco(texto) {
     return texto.trim()
 }
 
-testarPut.addEventListener('click', event => {
-    
-    event.preventDefault()
-
-    deletarTarefa()
-
-})
 
 async function deletarTarefa(idParam) {
     let configRequest = {
@@ -182,6 +175,7 @@ async function deletarTarefa(idParam) {
         if (resposta.status == 200 || resposta.status == 201) {
             let respostaConvertida = await resposta.json()
             console.log(respostaConvertida);
+            window.location.reload();
         } else {
             throw "Problema ao Deletar"
         }
@@ -222,4 +216,11 @@ async function atualizarTarefa() {
     } catch (error) {
 
     }
+}
+
+
+function pegarId(tarefaClicada)
+{
+    deletarTarefa(tarefaClicada)
+    
 }
