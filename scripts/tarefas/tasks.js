@@ -84,22 +84,6 @@ function buscarTarefas() {
     }
 
     fetch('https://ctd-todo-api.herokuapp.com/v1/tasks', configRequest)
-<<<<<<< HEAD
-    .then( resultado => {
-        if(resultado.status == 200){
-            return resultado.json()
-        }else{
-            throw 'Algum problema ocorreu'
-        }
-    })
-    .then( resultado => {
-        console.log(resultado);
-        
-    })
-    .catch(error => {
-        console.log(error);
-    })
-=======
         .then(resultado => {
             if (resultado.status == 200 || resultado.status == 201) {
                 return resultado.json()
@@ -120,7 +104,6 @@ function buscarTarefas() {
         .catch(error => {
             console.log(error);
         })
->>>>>>> 07afd1733e054584106b0d9996f07a05398338b3
 }
 //-----------------------------------------------------------------
 
