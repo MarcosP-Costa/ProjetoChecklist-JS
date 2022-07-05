@@ -188,28 +188,36 @@ async function deletarTarefa(idParam) {
 
 
 
+function pegarIdDeletar(tarefaClicada)
+{
+    deletarTarefa(tarefaClicada)
+    
+}
 
 
 
-async function atualizarTarefa() {
+async function atualizarTarefa(idParam) {
+    let bodyNormal = {
+        "description": prompt("Qual o nome da tarefa?"), 
+        "completed": confirm("Tarefa Finalizada?")//substituir isso pelo radioButton que a Mari criou
+    }
+    let bodyJson = JSON.stringify(bodyNormal)
     let configRequest = {
         method: "PUT",
         headers: {
             "Content-type": "application/json",
-            "id": "17697",
-            "Access-Control-Allow-Origin": "no-cors",
+            "id": idParam,
+            "Access-Control-Allow-Origin": "*",
             "Authorization": tokenJwt
         },
-        body: {
-            "description": "Aprender Javascript",
-            "completed": false
-        }
+        body: bodyJson
     }
     try {
-        let resposta = await fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/17697`, configRequest)
+        let resposta = await fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${idParam}`, configRequest)
         if (resposta.status == 200 || resposta.status == 201) {
             let respostaConvertida = await resposta.json();
             console.log(respostaConvertida);
+            window.location.reload();
         } else {
             throw resposta
         }
@@ -218,9 +226,14 @@ async function atualizarTarefa() {
     }
 }
 
-
-function pegarId(tarefaClicada)
+function pegarIdAtualizar(tarefaClicada)
 {
-    deletarTarefa(tarefaClicada)
-    
+    atualizarTarefa(tarefaClicada)
 }
+
+testarPut.addEventListener('click', event => {
+    event.preventDefault()
+    atualizarTarefa()
+})
+
+

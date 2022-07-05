@@ -4,9 +4,9 @@ function renderizaTarefasPendentes(tarefa){
     let li = document.createElement("li");
     li.classList.add("tarefa")
 
-    li.innerHTML = 
+    li.innerHTML = //troquei a div "not-done" por botao, para executar a função pegarIdAtualizar
     `
-    <div class="not-done" id="${tarefa.id}"></div>
+    <button class="not-done" id="${tarefa.id} "onClick="pegarIdAtualizar(this.id)""></button> 
     <div class="descricao">
         <p class="nome">${tarefa.description}</p>
         <p class="timestamp"><i class="far fa-calendar-alt"></i> ${tarefa.createdAt}</p>
