@@ -27,6 +27,7 @@ onload = function () {
         //Chama a função que busca os dados do usuário na API
         buscaDadosUsuario()
         buscarTarefas()
+        excluirTagsTarefas()
     }
 }
 
@@ -247,3 +248,14 @@ async function atualizarTextoTarefa(idParam) { // atualiza o texto da tarefa
     }
 }
 
+function excluirTagsTarefas(){
+     let elemento = listaULPendentes
+     while (elemento.firstChild){
+        elemento.removeChild(elemento.firstChild)
+        console.log(elemento);
+     }
+}
+
+
+//continuar amanha
+//estava tentando criar uma função para remover os filhos da lista pendentes, para não precisar recarregar a página ao ligar
