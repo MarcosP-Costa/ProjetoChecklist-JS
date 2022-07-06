@@ -10,9 +10,11 @@ function renderizaTarefasPendentes(tarefa) {
     <div class="descricao">
         <p class="nome">${tarefa.description}</p>
         
-        <p class="timestamp"> <button class="far fa-trash-alt" id="${tarefa.id}" onClick="atualizarTextoTarefa(this.id)"> Editar </button>  <i class="far fa-calendar-alt"></i> ${tarefa.createdAt}
+        <p class="timestamp"> <button id="${tarefa.id}" onClick="atualizarTextoTarefa(this.id)"><ion-icon name="brush-outline"></ion-icon> </button>  <i class="far fa-calendar-alt"></i> ${tarefa.createdAt}
         <button id="${tarefa.id}" onClick="deletarTarefa(this.id)"><i class="far fa-trash-alt"></i></button></p>
         </div>
     `
     listaULPendentes.appendChild(li)
 }
+
+//<button class="far fa-trash-alt" id="${tarefa.id}" onClick="atualizarTextoTarefa(this.id)"></button>
