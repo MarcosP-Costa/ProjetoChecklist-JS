@@ -21,7 +21,7 @@ Utilizamos uma estrutura web com HTML, CSS e JavaScript, também trabalhamos com
 - [Mateus Silva](https://github.com/massis93)
 - [Mariana Orsi](https://github.com/MarianaOrsi/MarianaOrsi)
 - [Marcos Paulo da Costa](https://github.com/MarcosP-Costa)
-- [Thiago Saraiva]
+-  Thiago Saraiva
 
 
 ## Roadmap
