@@ -216,7 +216,12 @@ buttonElement.addEventListener('click', event => {
     let signUpUserObjectJSON = JSON.stringify(signUpUserObject)
   
 
-    event.preventDefault()
+ 
+        setTimeout(() => {
+            mostrarSpinner()
+        }, 500);
+    //aqui esta o spinner
+    
 
     let configRequest = {
         method: "POST", //método HTTP
@@ -238,10 +243,14 @@ buttonElement.addEventListener('click', event => {
         })
         .then(resultado =>{
             console.log(resultado);
+            ocultarSpinner()
             alert("Cadastro Feito com Sucesso!")
-            location.href = "index.html";
+            location.href = "../index.html";
         })
-        .catch()
+        .catch(erro => {
+            console.log(erro);
+            ocultarSpinner()
+        })
 
 
 
