@@ -22,3 +22,23 @@ Utilizamos uma estrutura web com HTML, CSS e JavaScript, também trabalhamos com
 - [Mariana Orsi](https://github.com/MarianaOrsi/MarianaOrsi)
 - [Marcos Paulo da Costa](https://github.com/MarcosP-Costa)
 
+
+## Roadmap
+
+- ## Melhorias Principais
+- [x]  Montar páginas HTML(index, signup, tarefas)
+- [X]  Personalizar CSS
+- [x]  Criar JS para criação de conta
+- [x]  Criar JS para validação de Login
+- [x]  Criar JS para buscar tarefas de quem fez login
+- [x]  Criar estrutura JS para criar TAREFAS e fazer CRUD
+- [x]  Criar estrutura JS para montar o HTML das TAREFAS
+- [x]  Incluir Skeleton no Projeto
+- [ ]  Incluir Spinner no Projeto
+- [ ]  Incluir "Dark-Theme"
+- [ ]  Atualizar biblioteca de icones
+- [ ]  Subir na AWS
+- [ ]  Criar DOMINIO
+- ## Melhorias Secundarias
+- [x]  Trocar fundo do pincel de editar
+
