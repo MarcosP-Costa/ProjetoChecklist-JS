@@ -26,8 +26,12 @@ onload = function () {
 
         //Chama a função que busca os dados do usuário na API
         buscaDadosUsuario()
+
+        //Chama a função que busca as tarefas do usuário na API
         buscarTarefas()
-        excluirTagsTarefas()
+
+
+
     }
 }
 
@@ -44,7 +48,7 @@ async function buscaDadosUsuario() {
         let resposta = await fetch("https://ctd-todo-api.herokuapp.com/v1/users/getMe", configRequest);
 
         if (resposta.status == 200) {
-            let respostaConvertida = await resposta.json(); //console.log(respostaConvertida);
+            let respostaConvertida = await resposta.json(); 
             exibeNomeUsuario(respostaConvertida); //Chama a função que exibe/altera o nome do usuário e envia o objeto capturado na API
         } else {
             throw "Problema ao buscar o usuário na API";
@@ -71,6 +75,9 @@ finalizar.addEventListener('click', () => {
 
 //------------------busca tarefas API --------------
 function buscarTarefas() {
+    renderizarSkeletons(3, ".tarefas-pendentes");
+    renderizarSkeletons(3, ".tarefas-terminadas");
+
     let configRequest = {
         headers: {
             'content-type': 'application/json',
@@ -88,15 +95,25 @@ function buscarTarefas() {
         })
         .then(resultado => {
 
-            for (tarefa of resultado) {
-                if (tarefa.completed) {
-                    renderizaTarefasFinalizadas(tarefa)
-                } else {
-                    renderizaTarefasPendentes(tarefa)
+
+            setTimeout(() => {
+
+                removerSkeleton(".tarefas-pendentes")
+                removerSkeleton(".tarefas-terminadas")
+                for (tarefa of resultado) {
+                    if (tarefa.completed) {
+                        renderizaTarefasFinalizadas(tarefa)
+                    } else {
+                        renderizaTarefasPendentes(tarefa)
+                    }
                 }
-            }
+
+            }, 1000);
+
         })
         .catch(error => {
+            removerSkeleton(".tarefas-pendentes")
+            removerSkeleton(".tarefas-terminadas")
             console.log(error);
         })
 }
@@ -175,10 +192,9 @@ async function deletarTarefa(idParam) {
     }
 }
 
-function pegarIdDeletar(tarefaClicada)
-{
+function pegarIdDeletar(tarefaClicada) {
     deletarTarefa(tarefaClicada)
-    
+
 }
 
 async function atualizarStatusTarefa(idParam, statusParam) { // atualiza status da tarefa
@@ -247,15 +263,3 @@ async function atualizarTextoTarefa(idParam) { // atualiza o texto da tarefa
 
     }
 }
-
-function excluirTagsTarefas(){
-     let elemento = listaULPendentes
-     while (elemento.firstChild){
-        elemento.removeChild(elemento.firstChild)
-        console.log(elemento);
-     }
-}
-
-
-//continuar amanha
-//estava tentando criar uma função para remover os filhos da lista pendentes, para não precisar recarregar a página ao ligar

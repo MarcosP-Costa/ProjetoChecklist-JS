@@ -1,0 +1,15 @@
+Tarefas Importantes
+Incluir Skeleton
+Formatar a Data
+Incluir "Spinner"
+Colocar "Dark-Theme"
+Atualizar biblioteca de icones
+
+
+
+Tarefas Não-Importantes
+Trocar "fundo do pincel"
+Subir no AWS
+Dominio Publico
+
+Esquema de metas de conclusão
