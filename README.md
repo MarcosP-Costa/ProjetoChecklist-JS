@@ -21,6 +21,7 @@ Utilizamos uma estrutura web com HTML, CSS e JavaScript, também trabalhamos com
 - [Mateus Silva](https://github.com/massis93)
 - [Mariana Orsi](https://github.com/MarianaOrsi/MarianaOrsi)
 - [Marcos Paulo da Costa](https://github.com/MarcosP-Costa)
+- [Thiago Saraiva]
 
 
 ## Roadmap
@@ -40,5 +41,5 @@ Utilizamos uma estrutura web com HTML, CSS e JavaScript, também trabalhamos com
 - [ ]  Subir na AWS
 - [ ]  Criar DOMINIO
 - ## Melhorias Secundarias
-- [x]  Trocar fundo do pincel de editar
+- [ ]  Trocar fundo do pincel de editar
 
