@@ -9,8 +9,8 @@ function renderizaTarefasPendentes(tarefa) {
     <button class="not-done" id="${tarefa.id}" onClick="atualizarStatusTarefa(this.id, false)" ></button> 
     <div class="descricao">
         <p class="nome">${tarefa.description}</p>
-        
-        <p class="timestamp"> <button id="${tarefa.id}" onClick="atualizarTextoTarefa(this.id)"><i class="fas fa-pen"></i> </button>  <i class="far fa-calendar-alt"></i> ${tarefa.createdAt}
+        <p class="timestamp"> <button id="${tarefa.id}" onClick="atualizarTextoTarefa(this.id)"><i class="fas fa-pen"></i></button>  
+        <i class="far fa-calendar-alt"></i> ${tarefa.createdAt}
         <button id="${tarefa.id}" onClick="deletarTarefa(this.id)"><i class="far fa-trash-alt"></i></button></p>
         </div>
     `
