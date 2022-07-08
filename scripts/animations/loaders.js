@@ -1,5 +1,4 @@
- 
-/*
+ /*
  Nossa função receberá dois argumentos:
  
  1) Em primeiro lugar, o número de skeletons que queremos
@@ -42,7 +41,6 @@ function renderizarSkeletons(quantidade, conteiner) {
     });
    }
    
-
 /*
  Esta função receberá o nome do conteiner dentro do qual
  se encontram os skeletons que desejamos remover
@@ -66,6 +64,7 @@ function removerSkeleton(conteiner) {
     
     // Selecionamos o formulário de registro para poder ocultá-lo durante o carregamento
     const form = document.querySelector("form");
+    const main = document.querySelector('main')
     
     // Criamos nosso spinner
     const spinnerContainer = document.createElement("div");
@@ -77,12 +76,11 @@ function removerSkeleton(conteiner) {
     spinner.setAttribute("id", "load");
     
     // Ocultamos o formulário de registro
-    form.classList.add("hidden");
+    main.classList.add("hidden");
     
     // Adicionamos o Spinner ao nosso HTML.
     spinnerContainer.appendChild(spinner);
     body.appendChild(spinnerContainer);
-    
     return;
    }
 
@@ -92,15 +90,15 @@ function removerSkeleton(conteiner) {
     
     // Selecionamos o formulário de registro para poder mostrar-lo novamente
     const form = document.querySelector("form");
+    const main = document.querySelector('main')
     
     // Selecionamos o spinner
-    const spinnerContainer = document.querySelector("#conteiner-load");
-    
+    const spinnerContainer = document.getElementById("container-load");
     // Removemos o spinner do HTML
     body.removeChild(spinnerContainer);
     
     // Removemos a classe que oculta o formulário
-    form.classList.remove("hidden");
+    main.classList.remove("hidden");
     return;
    }
    

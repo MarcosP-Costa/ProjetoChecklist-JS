@@ -94,10 +94,7 @@ function buscarTarefas() {
             }
         })
         .then(resultado => {
-
-
             setTimeout(() => {
-
                 removerSkeleton(".tarefas-pendentes")
                 removerSkeleton(".tarefas-terminadas")
                 for (tarefa of resultado) {
@@ -107,9 +104,7 @@ function buscarTarefas() {
                         renderizaTarefasPendentes(tarefa)
                     }
                 }
-
-            }, 1000);
-
+            }, 500);
         })
         .catch(error => {
             removerSkeleton(".tarefas-pendentes")
@@ -120,7 +115,6 @@ function buscarTarefas() {
 
 //----------------- funçao para criação de tarefas na API (Felipe) - feito com promise ---------------------
 function criarTarefa(novaTarefaObjectJSON) {
-
     let configRequest = {
         method: 'POST',
         headers: {
@@ -194,7 +188,6 @@ async function deletarTarefa(idParam) {
 
 function pegarIdDeletar(tarefaClicada) {
     deletarTarefa(tarefaClicada)
-
 }
 
 async function atualizarStatusTarefa(idParam, statusParam) { // atualiza status da tarefa
