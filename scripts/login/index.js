@@ -115,7 +115,7 @@ buttonElement.addEventListener('click', event => {
         body: userObjectJSON //Corpo da requisição
     }
     setTimeout(() => {
-        fetch('https://ctd-todo-api.herokuapp.com/v1/users/login', configRequest)
+        fetch('https://ctd-fe2-todo-v2.herokuapp.com/v1/users/login', configRequest)
     .then(resultado =>{
         if(resultado.status == 200 || resultado.status == 201){
             return resultado.json()

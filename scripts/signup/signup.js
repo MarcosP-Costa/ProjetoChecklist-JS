@@ -227,7 +227,7 @@ buttonElement.addEventListener('click', event => {
     }
     
     setTimeout(() => {
-        fetch('https://ctd-todo-api.herokuapp.com/v1/users', configRequest)
+        fetch('https://ctd-fe2-todo-v2.herokuapp.com/v1/users', configRequest)
         .then(resultado => {
             //Verifica se ocorreu sucesso ao fazer o login
             if (resultado.status == 201 || resultado.status == 200) {
@@ -241,7 +241,6 @@ buttonElement.addEventListener('click', event => {
             console.log(resultado);
             alert("Cadastro Feito com Sucesso!")
             ocultarSpinner()
-            location.href = "../index.html";
         })
         .catch(erro => {
             console.log(erro);
