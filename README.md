@@ -35,11 +35,9 @@ Utilizamos uma estrutura web com HTML, CSS e JavaScript, também trabalhamos com
 - [x]  Criar estrutura JS para criar TAREFAS e fazer CRUD
 - [x]  Criar estrutura JS para montar o HTML das TAREFAS
 - [x]  Incluir Skeleton no Projeto
-- [ ]  Incluir Spinner no Projeto
+- [x]  Incluir Spinner no Projeto
 - [ ]  Incluir "Dark-Theme"
-- [ ]  Atualizar biblioteca de icones
-- [ ]  Subir na AWS
-- [ ]  Criar DOMINIO
+- [x]  Atualizar biblioteca de icones
 - ## Melhorias Secundarias
-- [ ]  Trocar fundo do pincel de editar
+- [X]  Trocar fundo do pincel de editar
 

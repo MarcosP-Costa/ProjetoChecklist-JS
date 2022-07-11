@@ -9,7 +9,6 @@ let userObject = {
     'password': ''
 }
 
-
 //-----------------------E-mail validations--------------------------
 emailInput.addEventListener('keyup', event => {
     let infoEmail = document.getElementById('email-info')
@@ -95,6 +94,8 @@ function buttonValidation(emailStyle, passwordStyle){
 
 //------------------------Button action----------------------------
 buttonElement.addEventListener('click', event => {
+    mostrarSpinner()
+
     let email = removeBlankSpace(emailInput.value)
     let password = removeBlankSpace(passwordInput.value)
 
@@ -113,8 +114,8 @@ buttonElement.addEventListener('click', event => {
         },
         body: userObjectJSON //Corpo da requisição
     }
-
-    fetch('https://ctd-todo-api.herokuapp.com/v1/users/login', configRequest)
+    setTimeout(() => {
+        fetch('https://ctd-fe2-todo-v2.herokuapp.com/v1/users/login', configRequest)
     .then(resultado =>{
         if(resultado.status == 200 || resultado.status == 201){
             return resultado.json()
@@ -136,7 +137,10 @@ buttonElement.addEventListener('click', event => {
     })
     .catch(erro =>{
         console.log(erro);
+        ocultarSpinner()
     })
+    }, 1000);
+    
 })
 
 //------------------------function to remove blank spaces from any border----------------------------

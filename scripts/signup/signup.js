@@ -215,11 +215,13 @@ buttonElement.addEventListener('click', event => {
 
     let signUpUserObjectJSON = JSON.stringify(signUpUserObject)
   
+    HEAD
 
  
 
+    bdc5e89b3d2b9cbe831bb39dfdeca597fb280
     //aqui esta o spinner
-    
+    mostrarSpinner()
 
     let configRequest = {
         method: "POST", //método HTTP
@@ -228,8 +230,9 @@ buttonElement.addEventListener('click', event => {
         },
         body: signUpUserObjectJSON //Corpo da requisição
     }
-
-    fetch('https://ctd-todo-api.herokuapp.com/v1/users', configRequest)
+    
+    setTimeout(() => {
+        fetch('https://ctd-fe2-todo-v2.herokuapp.com/v1/users', configRequest)
         .then(resultado => {
             //Verifica se ocorreu sucesso ao fazer o login
             if (resultado.status == 201 || resultado.status == 200) {
@@ -241,19 +244,15 @@ buttonElement.addEventListener('click', event => {
         })
         .then(resultado =>{
             console.log(resultado);
-            ocultarSpinner()
             alert("Cadastro Feito com Sucesso!")
-            location.href = "../index.html";
+            ocultarSpinner()
         })
         .catch(erro => {
             console.log(erro);
+            alert(erro)
             ocultarSpinner()
         })
-
-
-
-
-
+    }, 1000);
 })
 
 //------------------------function to remove blank spaces from any border----------------------------

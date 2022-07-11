@@ -45,7 +45,7 @@ async function buscaDadosUsuario() {
     }
 
     try { //Tenta executar as seguintes ações...
-        let resposta = await fetch("https://ctd-todo-api.herokuapp.com/v1/users/getMe", configRequest);
+        let resposta = await fetch("https://ctd-fe2-todo-v2.herokuapp.com/v1/users/getMe", configRequest);
 
         if (resposta.status == 200) {
             let respostaConvertida = await resposta.json(); 
@@ -65,18 +65,9 @@ function exibeNomeUsuario(objetoUsuario) {
     p.innerText = `${objetoUsuario.firstName} ${objetoUsuario.lastName}`
 }
 
-//------------------ finalizar sessao --------------
-finalizar.addEventListener('click', () => {
-    if (confirm("Tem Certeza?")) {
-        sessionStorage.removeItem('jwt')
-        location.href = 'index.html'
-    }
-})
-
 //------------------busca tarefas API --------------
 function buscarTarefas() {
-    renderizarSkeletons(3, ".tarefas-pendentes");
-    renderizarSkeletons(3, ".tarefas-terminadas");
+        qtSkeletons()
 
     let configRequest = {
         headers: {
@@ -85,7 +76,7 @@ function buscarTarefas() {
         }
     }
 
-    fetch('https://ctd-todo-api.herokuapp.com/v1/tasks', configRequest)
+    fetch('https://ctd-fe2-todo-v2.herokuapp.com/v1/tasks', configRequest)
         .then(resultado => {
             if (resultado.status == 200 || resultado.status == 201) {
                 return resultado.json()
@@ -94,10 +85,7 @@ function buscarTarefas() {
             }
         })
         .then(resultado => {
-
-
             setTimeout(() => {
-
                 removerSkeleton(".tarefas-pendentes")
                 removerSkeleton(".tarefas-terminadas")
                 for (tarefa of resultado) {
@@ -107,9 +95,7 @@ function buscarTarefas() {
                         renderizaTarefasPendentes(tarefa)
                     }
                 }
-
-            }, 1000);
-
+            }, 500);
         })
         .catch(error => {
             removerSkeleton(".tarefas-pendentes")
@@ -120,7 +106,6 @@ function buscarTarefas() {
 
 //----------------- funçao para criação de tarefas na API (Felipe) - feito com promise ---------------------
 function criarTarefa(novaTarefaObjectJSON) {
-
     let configRequest = {
         method: 'POST',
         headers: {
@@ -130,7 +115,7 @@ function criarTarefa(novaTarefaObjectJSON) {
         body: novaTarefaObjectJSON
     }
 
-    fetch('https://ctd-todo-api.herokuapp.com/v1/tasks', configRequest)
+    fetch('https://ctd-fe2-todo-v2.herokuapp.com/v1/tasks', configRequest)
         .then(resultado => {
             if (resultado.status == 201 || resultado.status == 200) {
                 return resultado.json()
@@ -146,28 +131,6 @@ function criarTarefa(novaTarefaObjectJSON) {
         })
 }
 
-//----------------- adicionando evento no botao para adicionar tarefa ---------------------
-botaoNovaTarefa.addEventListener('click', event => {
-    event.preventDefault()
-    let novaTarefa = document.getElementById('novaTarefa')
-    let statusNovaTarefa = document.querySelector('input[name="status-nova-tarefa"]:checked').value
-    novaTarefaObject.description = novaTarefa.value
-    novaTarefaObject.completed = statusNovaTarefa
-    let novaTarefaObjectJSON = JSON.stringify(novaTarefaObject)
-    //console.log(novaTarefaObjectJSON)
-    if (novaTarefa.value.length < 5) {
-        alert('Não há novas tarefas a serem inseridas')
-    } else {
-        criarTarefa(novaTarefaObjectJSON)
-        novaTarefa.value = ""
-    }
-})
-
-//------------------------função destinada a remover espaço em branco----------------------------
-function removerEspacoBranco(texto) {
-    return texto.trim()
-}
-
 async function deletarTarefa(idParam) {
     let configRequest = {
         method: "DELETE",
@@ -178,7 +141,7 @@ async function deletarTarefa(idParam) {
         },
     }
     try {
-        let resposta = await fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${idParam}`, configRequest)
+        let resposta = await fetch(`https://ctd-fe2-todo-v2.herokuapp.com/v1/tasks/${idParam}`, configRequest)
         if (resposta.status == 200 || resposta.status == 201) {
             let respostaConvertida = await resposta.json()
             console.log(respostaConvertida);
@@ -194,7 +157,6 @@ async function deletarTarefa(idParam) {
 
 function pegarIdDeletar(tarefaClicada) {
     deletarTarefa(tarefaClicada)
-
 }
 
 async function atualizarStatusTarefa(idParam, statusParam) { // atualiza status da tarefa
@@ -221,7 +183,7 @@ async function atualizarStatusTarefa(idParam, statusParam) { // atualiza status 
         body: bodyJson
     }
     try {
-        let resposta = await fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${idParam}`, configRequest)
+        let resposta = await fetch(`https://ctd-fe2-todo-v2.herokuapp.com/v1/tasks/${idParam}`, configRequest)
         if (resposta.status == 200 || resposta.status == 201) {
             let respostaConvertida = await resposta.json();
             console.log(respostaConvertida);
@@ -251,7 +213,7 @@ async function atualizarTextoTarefa(idParam) { // atualiza o texto da tarefa
     }
     console.log(bodyJson);
     try {
-        let resposta = await fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${idParam}`, configRequest)
+        let resposta = await fetch(`https://ctd-fe2-todo-v2.herokuapp.com/v1/tasks/${idParam}`, configRequest)
         if (resposta.status == 200 || resposta.status == 201) {
             let respostaConvertida = await resposta.json();
             console.log(respostaConvertida);
@@ -262,4 +224,67 @@ async function atualizarTextoTarefa(idParam) { // atualiza o texto da tarefa
     } catch (error) {
 
     }
+}
+
+//----------------- adicionando evento no botao para adicionar tarefa ---------------------
+botaoNovaTarefa.addEventListener('click', event => {
+    event.preventDefault()
+    let novaTarefa = document.getElementById('novaTarefa')
+    let statusNovaTarefa = document.querySelector('input[name="status-nova-tarefa"]:checked').value
+    novaTarefaObject.description = novaTarefa.value
+    novaTarefaObject.completed = statusNovaTarefa
+    let novaTarefaObjectJSON = JSON.stringify(novaTarefaObject)
+    //console.log(novaTarefaObjectJSON)
+    if (novaTarefa.value.length < 5) {
+        alert('Não há novas tarefas a serem inseridas')
+    } else {
+        criarTarefa(novaTarefaObjectJSON)
+        novaTarefa.value = ""
+    }
+})
+
+//------------------ finalizar sessao --------------
+finalizar.addEventListener('click', () => {
+    if (confirm("Tem Certeza?")) {
+        sessionStorage.removeItem('jwt')
+        location.href = 'index.html'
+    }
+})
+
+function qtSkeletons() {
+    let qtSkeletonsPententes = 0
+    let qtSkeletonsCompletas = 0
+
+
+    let configRequest = {
+        headers: {
+            'content-type': 'application/json',
+            'authorization': tokenJwt
+        }
+    }
+
+    fetch('https://ctd-fe2-todo-v2.herokuapp.com/v1/tasks', configRequest)
+        .then(resultado => {
+            if (resultado.status == 200 || resultado.status == 201) {
+                return resultado.json()
+            } else {
+                throw 'Algum problema ocorreu'
+            }
+        })
+        .then(resultado => {
+                for (tarefa of resultado) {
+                    if (tarefa.completed) {
+                        qtSkeletonsCompletas++
+                    } else {
+                        qtSkeletonsPententes++
+                    }
+                }
+                renderizarSkeletons(qtSkeletonsPententes, ".tarefas-pendentes");
+                renderizarSkeletons(qtSkeletonsCompletas, ".tarefas-terminadas");
+
+        })
+        .catch(error => {
+
+            console.log(error);
+        })
 }
