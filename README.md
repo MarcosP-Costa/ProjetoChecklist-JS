@@ -38,8 +38,6 @@ Utilizamos uma estrutura web com HTML, CSS e JavaScript, também trabalhamos com
 - [x]  Incluir Spinner no Projeto
 - [ ]  Incluir "Dark-Theme"
 - [x]  Atualizar biblioteca de icones
-- [ ]  Subir na AWS
-- [ ]  Criar DOMINIO
 - ## Melhorias Secundarias
-- [ ]  Trocar fundo do pincel de editar
+- [X]  Trocar fundo do pincel de editar
 
