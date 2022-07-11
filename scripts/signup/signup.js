@@ -6,6 +6,16 @@ let passwordInput = document.getElementById('password')
 let confirmPasswordInput = document.getElementById('confirm-password')
 let corFundoValidado = "rgb(223, 237, 236)" //'#dfedec'
 
+//função para limpar campos
+
+function limparCampos(){
+    nameInput.value = ""
+    surnameInput.value = ""
+    emailInput.value = ""
+    passwordInput.value = ""
+    confirmPasswordInput.value = ""
+}
+
 //-----------------------Sing up user object--------------------------
 let signUpUserObject = {
     'firstName': '',
@@ -214,12 +224,7 @@ buttonElement.addEventListener('click', event => {
     signUpUserObject.password = password
 
     let signUpUserObjectJSON = JSON.stringify(signUpUserObject)
-  
-    HEAD
 
- 
-
-    bdc5e89b3d2b9cbe831bb39dfdeca597fb280
     //aqui esta o spinner
     mostrarSpinner()
 
@@ -230,29 +235,44 @@ buttonElement.addEventListener('click', event => {
         },
         body: signUpUserObjectJSON //Corpo da requisição
     }
-    
+
     setTimeout(() => {
         fetch('https://ctd-fe2-todo-v2.herokuapp.com/v1/users', configRequest)
-        .then(resultado => {
-            //Verifica se ocorreu sucesso ao fazer o login
-            if (resultado.status == 201 || resultado.status == 200) {
-                return resultado.json();
-            } else {
-                //Lança uma exceção em caso de erro no login
-                throw resultado;
-            }
-        })
-        .then(resultado =>{
-            console.log(resultado);
-            alert("Cadastro Feito com Sucesso!")
-            ocultarSpinner()
-        })
-        .catch(erro => {
-            console.log(erro);
-            alert(erro)
-            ocultarSpinner()
-        })
+            .then(resultado => {
+                //Verifica se ocorreu sucesso ao fazer o login
+                if (resultado.status == 201 || resultado.status == 200) {
+                    return resultado.json();
+                } else {
+                    //Lança uma exceção em caso de erro no login
+                    throw resultado;
+                }
+            })
+            .then(resultado => {
+                console.log(resultado);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Conta Criada!',
+                    text: 'Cadastro feito com sucesso!'
+                })
+                //alert("Cadastro Feito com Sucesso!")
+                ocultarSpinner()
+            })
+            .catch(erro => {
+                console.log(erro);
+                if(erro.status == 400){
+                 Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `Usuario já registrado!`
+                })
+
+                }
+                
+
+                ocultarSpinner()
+            })
     }, 1000);
+    limparCampos()
 })
 
 //------------------------function to remove blank spaces from any border----------------------------

@@ -65,6 +65,7 @@ function removerSkeleton(conteiner) {
     // Selecionamos o formulário de registro para poder ocultá-lo durante o carregamento
     const form = document.querySelector("form");
     const main = document.querySelector('main')
+    const header = document.querySelector('header')
     
     // Criamos nosso spinner
     const spinnerContainer = document.createElement("div");
@@ -77,6 +78,7 @@ function removerSkeleton(conteiner) {
     
     // Ocultamos o formulário de registro
     main.classList.add("hidden");
+    header.classList.add("hidden");
     
     // Adicionamos o Spinner ao nosso HTML.
     spinnerContainer.appendChild(spinner);
@@ -91,6 +93,7 @@ function removerSkeleton(conteiner) {
     // Selecionamos o formulário de registro para poder mostrar-lo novamente
     const form = document.querySelector("form");
     const main = document.querySelector('main')
+    const header = document.querySelector('header')
     
     // Selecionamos o spinner
     const spinnerContainer = document.getElementById("container-load");
@@ -99,6 +102,7 @@ function removerSkeleton(conteiner) {
     
     // Removemos a classe que oculta o formulário
     main.classList.remove("hidden");
+    header.classList.remove("hidden");
     return;
    }
    
