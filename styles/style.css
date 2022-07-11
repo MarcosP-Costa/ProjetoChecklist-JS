@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
 
-body{
+body {
     width: 100%;
     height: 100vh;
     display: flex;
@@ -16,25 +16,25 @@ body{
     justify-content: center;
 }
 
-main{
+main {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#login-image{
+#login-image {
     width: 50%;
     margin: 0 40px 0 0;
     display: flex;
     flex-shrink: 5;
-    justify-content: flex-end; 
+    justify-content: flex-end;
 }
 
-img{
+img {
     flex-basis: 300px;
 }
 
-.form-section{
+.form-section {
     width: 50%;
     margin: 0 auto;
     display: flex;
@@ -42,7 +42,7 @@ img{
     justify-content: flex-start;
 }
 
-form{
+form {
     max-width: 350px;
     min-width: 300px;
     margin: 0 40px 0 40px;
@@ -50,56 +50,32 @@ form{
     display: flex;
     flex-direction: column;
     box-shadow: 10px 5px 5px #2f074370;
-    background: #43cea2; 
-    background: -webkit-linear-gradient(to right, #3686d6cc, #43cea2b9);  
+    background: #43cea2;
+    background: -webkit-linear-gradient(to right, #3686d6cc, #43cea2b9);
     background: linear-gradient(to right, #3686d6cc, #43cea2b9);
     margin-top: 5em;
-
 }
 
 
-
-#form-title,
-#form-subtitle{
-    padding: 5px;
-    margin: 20px 0 10px;
-    align-self: center;
-    font-family: 'Kantumruy Pro', sans-serif;
-    letter-spacing: 2px;
-    color: #2F0743;
-}
-
-#form-subtitle{
+#form-subtitle {
     margin: 0 0 25px;
     font-family: 'Poppins', sans-serif;
 }
 
-label{
-    margin: 0 0 5px 20px;
-    color: #2F0743;
-}
-
-input{
-    margin: 0 20px 5px 20px;
-    padding: 5px;
-    border-radius: 5px;
-}
-
-small{
+small {
     font-size: 12px;
     margin: 0 20px 10px 20px;
     visibility: hidden;
-    color: #2F0743;
+    color: white;
 }
 
 #login-button,
-#create-button{
+#create-button {
     margin: 0 15px 15px 15px;
     padding: 15px;
     border-radius: 50px;
     font-size: 20px;
-    background-color: #073d4bb7;
-    color: #2F0743;
+
     border: none;
 }
 
@@ -111,50 +87,54 @@ ion-icon {
     margin-top: -3px;
 }
 
-a{
+a {
     align-self: flex-start;
     margin: 20px 0px 20px 40px;
 }
 
 /*-------------focus status--------------*/
-input:focus{
+input:focus {
     outline: none;
     box-shadow: 0 0 0 2px #CAEDEB;
 }
 
 /*-------------hover status--------------*/
 #login-button:hover,
-#create-button:hover{
+#create-button:hover {
     cursor: not-allowed;
 }
 
 /*----------------------layout for tablet and mobile-------------------------*/
-@media (max-width: 768px){
-    main{
+@media (max-width: 768px) {
+    header {
+        margin: 20px;
+
+    }
+
+    main {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
-    #login-image{
+    #login-image {
         width: 0px;
         height: 0px;
         margin: 0;
     }
 
-    img{
-        width:0%;
-        height:0%;
+    img {
+        display: none;
     }
 
-    .form-section{
+    .form-section {
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-    form{
+    form {
         max-width: none;
         min-width: 310px;
         width: 80%;
@@ -162,21 +142,21 @@ input:focus{
     }
 
     #form-title,
-    #form-subtitle{
+    #form-subtitle {
         padding: 5px;
         margin: 15px 0 15px;
         align-self: center;
-    }        
-    
-    #form-subtitle{
+    }
+
+    #form-subtitle {
         margin: 0 0 20px;
     }
 
-    small{
+    small {
         margin: 0 20px 12px 20px;
     }
 
-    a{
+    a {
         align-self: center;
         margin: 20px auto;
     }

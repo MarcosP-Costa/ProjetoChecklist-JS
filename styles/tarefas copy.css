@@ -63,9 +63,9 @@ body.dark {
   position: absolute;
   top: 0px;
   left: 1px;
-  height: 14.5px;
-  width: 14.5px;
-  transform: translateX(0.65px);
+  height: 14px;
+  width: 14px;
+  transform: translateX(0.5px);
   transition: transform 0.2s linear;
 }
 
@@ -76,12 +76,10 @@ body.dark {
 
 .fa-moon {
   color: #f1c40f;
-  padding-bottom: 2px;
 }
 
 .fa-sun {
   color: #f39c12;
-  padding-bottom: 2px;
 }
 
 

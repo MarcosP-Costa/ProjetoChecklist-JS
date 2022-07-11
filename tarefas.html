@@ -2,69 +2,80 @@
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- ----------------------------- estilos CSS ----------------------------- -->
-  <link rel="stylesheet" href="./styles/tarefas.css">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- ----------------------------- estilos CSS ----------------------------- -->
+    <link rel="stylesheet" href="./styles/tarefas.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-  <!-- ------------------- Biblioteca de icones - Fontawesome -------------------- -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-  <link rel="stylesheet" href="./styles/skeleton.css"/>
-  <link rel="stylesheet" href="./styles/spinner.css"/>
+    <!-- ------------------- Biblioteca de icones - Fontawesome -------------------- -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="./styles/skeleton.css" />
+    <link rel="stylesheet" href="./styles/spinner.css" />
 
     <script src="./scripts/tarefas/tarefas_pendentes.js" defer> </script>
     <script src="./scripts/tarefas/tarefas_finalizadas.js" defer> </script>
     <script src="./scripts/tarefas/tasks.js" defer> </script>
     <script src="./scripts/animations/loaders.js" defer> </script>
+    <script src="./scripts/dkmode/dkmode-tarefas.js" defer> </script>
 
-  <title>To-Do App</title>
+    <title>To-Do App</title>
 </head>
 
 <body>
-  <header>
-    <nav>
-      <a href="#">Tarefas</a>
-    </nav>
+    <header>
+        <nav>
+            <a href="#">Tarefas</a>
+        </nav>
 
-    <div class="user-info">
-      <p id="nomeUsuario"></p>
-      <div class="user-image"><ion-icon name="person-outline"></ion-icon></div>
-      <button id="closeApp">Finalizar sessão</button>
-      </p>
-    </div>
-  </header>
+        <div class="user-info">
+            <div class="btn-Dkmode">
+                <input type="checkbox" class="checkbox" id="chk" />
+                <label class="label" for="chk">
+                    <i class="fas fa-moon fa-xs"></i>
+                    <i class="fas fa-sun fa-xs"></i>
+                    <div class="ball"></div>
+                </label>
+            </div>
+            <p id="nomeUsuario"></p>
+            <div class="user-image">
+                <ion-icon name="person-outline"></ion-icon>
+            </div>
+            <button id="closeApp">Finalizar sessão</button>
+            </p>
+        </div>
+    </header>
 
-  <form class="nova-tarefa">
-    <div class="not-done "></div>
-    <input id="novaTarefa" type="text" placeholder="Nova tarefa">
-    
-    <!-- radio button -->
-    <input type="radio" id="pendente" name="status-nova-tarefa" value="false" checked>
-    <label class="radio-label" for="pendente">Pendente</label>
-    <input type="radio" id="completo" name="status-nova-tarefa" value="true">
-    <label class="radio-label" for="completo">Completo</label>
+    <form class="nova-tarefa">
+        <div class="not-done "></div>
+        <input id="novaTarefa" type="text" placeholder="Nova tarefa">
 
-    <button id="botaoNovaTarefa" type="submit">
-      <img src="./imagens/plus.png" alt="Adicionar uma nova tarefa">
-    </button>
-  </form>
+        <!-- radio button -->
+        <input type="radio" id="pendente" name="status-nova-tarefa" value="false" checked>
+        <label class="radio-label" for="pendente">Pendente</label>
+        <input type="radio" id="completo" name="status-nova-tarefa" value="true">
+        <label class="radio-label" for="completo">Completo</label>
 
-  <ul class="tarefas-pendentes">
-    
-  </ul>
+        <button id="botaoNovaTarefa" type="submit">
+            <img src="./imagens/plus.png" alt="Adicionar uma nova tarefa">
+        </button>
+    </form>
 
-  <h2 class="titulo-terminadas">Tarefas terminadas</h2>
-  <ul class="tarefas-terminadas">
+    <ul class="tarefas-pendentes">
 
-  </ul>
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    </ul>
+
+    <h2 class="titulo-terminadas">Tarefas terminadas</h2>
+    <ul class="tarefas-terminadas">
+
+    </ul>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>

@@ -1,48 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/style.css">
-    <link rel="stylesheet" href="./styles/spinner.css"/>
+    <link rel="stylesheet" href="./styles/spinner.css" />
+    <link rel="stylesheet" href="./styles/dkmode-signup.css" />
     <title>Get it done - Sign up</title>
     <script src="./scripts/animations/loaders.js" defer> </script>
+    <script src="./scripts/dkmode/dkmode-signup.js" defer> </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
-    <header></header>
+    <header>
+        <div class="dkMode">
+            <input type="checkbox" class="checkbox" id="chk" />
+            <label class="label" for="chk">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
+                <div class="ball"></div>
+            </label>
+        </div>
+    </header>
     <main>
         <div id="login-image">
             <img src="./imagens/todo/todo1.png" alt="to do list image with three tasks">
         </div>
         <div class="form-section">
-            <form action="#">
-                <h1 id="form-title">To-Do List</h1>
-                <h2 id="form-subtitle">Inscreva-se</h2>
+            <form action="#" class="formulario" id="forms">
+                <h1 class='txt' id="form-Title">To-Do List</h1>
+                <h2 class='txt' id="form-subtitle">Inscreva-se</h2>
 
-                <label id="name-title" for="name">Nome:</label>
+                <label id="name-title" class="txt" for="name">Nome:</label>
                 <input id="name" type="text" placeholder="Insira seu nome:" autofocus>
                 <small class="validation-info" id="name-info">Campo Obrigatório</small>
-                
-                <label  id="surname-title" for="surname">Surname</label>
-                <input id="surname" type="text" placeholder="Insira seu sobrenome:" >
+
+                <label id="surname-title" class="txt" for="surname">Surname</label>
+                <input id="surname" type="text" placeholder="Insira seu sobrenome:">
                 <small class="validation-info" id="surname-info">Campo Obrigatório</small>
-                
-                <label id="email-title" for="email">E-mail</label>
+
+                <label id="email-title" class="txt" for="email">E-mail</label>
                 <input id="email" type="email" placeholder="Insira seu e-mail">
                 <small class="validation-info" id="email-info">Campo Obrigatório</small>
-                
-                <label id="password-title"  for="password">Password</label>
+
+                <label id="password-title" class="txt" for="password">Password</label>
                 <input id="password" type="password" placeholder="Insira sua senha:">
                 <small class="validation-info" id="password-info">Campo Obrigatório</small>
-                
-                <label id="confirm-password-title"  for="confirm-password">Confirm password</label>
+
+                <label id="confirm-password-title" class="txt" for="confirm-password">Confirm password</label>
                 <input id="confirm-password" type="password" placeholder="Repita sua senha">
                 <small class="validation-info" id="confirm-password-info">Campo Obrigatório</small>
-                
-                <button id="create-button" type="submit" disabled>Criar!</button>
+
+                <button id="create-button" class="dark" type="submit" disabled>Criar!</button>
             </form>
-            <a href="./index.html">Ja possui uma conta? logue aqui!</a>
+            <a id="msgBtn" href="./index.html">Ja possui uma conta? logue aqui!</a>
         </div>
     </main>
     <footer>
@@ -50,4 +66,5 @@
     </footer>
     <script src="./scripts/signup/signup.js"></script>
 </body>
+
 </html>

@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    align-content: left;
+}
+
+body {
+    background-color: #fafafa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    transition: background 1s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+body.dark {
+    background: #39393d;
+}
+
+button.dark {
+    font-weight: 900;
+    background-color: #8458c5fd;
+
+    color: #170321;
+}
+
+button {
+    background-color: #3440e0;
+    color: whitesmoke;
+    font-weight: 900;
+}
+
+a {
+    text-align: center;
+    color: #3440e0;
+    padding: 0 0 0 50px;
+}
+
+a.dark {
+    text-align: center;
+    color: white;
+    padding: 0 0 0 50px;
+}
+
+
+
+.checkbox {
+    opacity: 0;
+    position: absolute;
+}
+
+.label {
+    background-color: rgb(40, 42, 55);
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    position: relative;
+    height: 26px;
+    width: 50px;
+    transform: scale(1.5);
+}
+
+form.dark {
+    box-shadow: 2px 2px 2px #0a1124;
+    background: #1d1d1d;
+}
+
+
+
+input[class="dark"] {
+    background-color: blue;
+}
+
+label.dark {
+    margin: 0 0 5px 20px;
+    color: rgb(236, 230, 230);
+}
+
+label {
+    margin: 0 0 5px 20px;
+    font-weight: 600;
+}
+
+input {
+    margin: 0 20px 5px 20px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: white;
+}
+
+input.dark {
+    margin: 0 20px 5px 20px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: black;
+
+}
+
+h1.dark {
+    color: #f985f3fd
+}
+
+h1 {
+    padding: 5px;
+    margin: 14px 0 1px;
+    align-self: center;
+    font-family: 'Kantumruy Pro', sans-serif;
+    letter-spacing: 1px;
+    color: #132113;
+    font-weight: 1900;
+}
+
+
+h2 {
+    padding: 5px;
+    margin: 14px 0 1px;
+    align-self: center;
+    font-family: 'Kantumruy Pro', sans-serif;
+    letter-spacing: 1px;
+    color: rgb(252, 251, 253);
+    font-weight: 900;
+}
+
+.label .ball {
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    height: 22px;
+    width: 22px;
+    transform: translateX(0px);
+    transition: transform 0.2s linear;
+}
+
+.checkbox:checked+.label .ball {
+    transform: translateX(24px);
+}
+
+
+.fa-moon {
+    color: #f1c40f;
+}
+
+.fa-sun {
+    color: #f39c12;
+}
