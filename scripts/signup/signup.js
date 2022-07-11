@@ -217,9 +217,7 @@ buttonElement.addEventListener('click', event => {
   
 
  
-        setTimeout(() => {
-            mostrarSpinner()
-        }, 500);
+
     //aqui esta o spinner
     
 
