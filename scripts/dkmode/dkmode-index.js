@@ -1,4 +1,5 @@
 const loginBtn = document.getElementById('login-button')
+const github = document.getElementById('github')
 const chk = document.getElementById('chk');
 const forms = document.getElementById('forms')
 const emailTitle = document.getElementById('email-title');
@@ -14,6 +15,7 @@ const msgCrt = document.getElementById('msgCrt')
 
 chk.addEventListener('change', (event) => {
     loginBtn.classList.toggle('dark');
+    github.classList.toggle('dark');
     document.body.classList.toggle('dark');
     forms.classList.toggle('dark');
     emailTitle.classList.toggle('dark')

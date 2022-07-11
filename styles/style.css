@@ -70,7 +70,7 @@ small {
 }
 
 #login-button,
-#create-button {
+#create-button, #github {
     margin: 0 15px 15px 15px;
     padding: 15px;
     border-radius: 50px;
@@ -100,8 +100,11 @@ input:focus {
 
 /*-------------hover status--------------*/
 #login-button:hover,
-#create-button:hover {
+#create-button:hover{
     cursor: not-allowed;
+}
+#github:hover{
+    cursor:pointer;
 }
 
 /*----------------------layout for tablet and mobile-------------------------*/

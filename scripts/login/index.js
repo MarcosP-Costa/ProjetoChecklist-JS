@@ -1,4 +1,4 @@
-let buttonElement = document.querySelector('button')
+let buttonElement = document.getElementById('login-button')
 let emailInput = document.getElementById('email')
 let passwordInput = document.getElementById('password')
 let corFundoValidado = "rgb(223, 237, 236)" //'#dfedec'
@@ -160,10 +160,57 @@ function removeBlankSpace(text) {
     return text.trim()
 }
 
-/* let usuarioGithub
-let tristeza = document.getElementById("tristeza")
+//implementar função de buscar foto do github
 
-tristeza.addEventListener("click", event => {
+let botaoGithub = document.getElementById("github")
+let imagem;
+
+botaoGithub.addEventListener("click", event =>{
     event.preventDefault()
-    
-}) */
+    pegarFotoGitHub()
+})
+
+function pegarFotoGitHub (){
+    Swal.fire({
+        title: 'Digite seu usuario do GitHub',
+        text: 'Caso queira usar a mesma foto de perfil',
+        input: 'text',
+        inputAttributes: {
+          autocapitalize: 'off'
+        },
+        showCancelButton: true,
+        confirmButtonText: 'Salvar',
+        cancelButtonText: 'Cancelar',
+        showLoaderOnConfirm: true,
+        preConfirm: (login) => {
+          return fetch(`//api.github.com/users/${login}`)
+            .then(response => {
+              if (!response.ok) {
+                throw new Error(response.statusText)
+              }
+              return response.json()
+            })
+            .catch(error => {
+              Swal.showValidationMessage(
+                `Não achamos seu perfil 😣`
+              )
+              console.log(error);
+            })
+        },
+        allowOutsideClick: () => !Swal.isLoading()
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: `Salvamos sua foto ${result.value.login} 😎`,
+            imageUrl: result.value.avatar_url
+          })
+          salvaFotoGithub(result.value.avatar_url)
+        }
+      })
+}
+
+function salvaFotoGithub(param){
+    sessionStorage.setItem("fotoGitHub", param)
+    imagem = sessionStorage.getItem("fotoGitHub");
+    console.log(imagem);
+}

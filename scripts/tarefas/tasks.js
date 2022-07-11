@@ -15,6 +15,7 @@ onload = function () {
 
     //Busca o token do usuário no Storage
     tokenJwt = sessionStorage.getItem("jwt");
+    usuarioGithub = sessionStorage.getItem("fotoGitHub")
 
 
     //Verifica se o token existe/é valido
@@ -35,10 +36,26 @@ onload = function () {
 
         //Chama a função que busca as tarefas do usuário na API
         buscarTarefas()
-
-
-
+        botarFoto()
     }
+}
+
+function botarFoto(){
+    let div = document.getElementById("user-image")
+    if(usuarioGithub){
+    div.innerHTML =
+        `
+        <img src="${usuarioGithub}" style="width:35px;height:35px;border-radius:50px"> </img>
+        `
+    }else{
+
+    
+    div.innerHTML =
+    `
+    <ion-icon name="person-outline"></ion-icon>
+    `
+}
+
 }
 
 /* Função do tipo assincrona */
@@ -272,6 +289,7 @@ finalizar.addEventListener('click', () => {
     }).then((result) => {
         if (result.isConfirmed) {
             sessionStorage.removeItem('jwt')
+            sessionStorage.removeItem('fotoGitHub')
             location.href = 'index.html'
         }
     })
