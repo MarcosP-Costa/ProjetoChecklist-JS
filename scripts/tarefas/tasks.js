@@ -1,4 +1,5 @@
 let tokenJwt;
+let usuarioGithub;
 let finalizar = document.getElementById('closeApp')
 let botaoNovaTarefa = document.getElementById('botaoNovaTarefa')
 
@@ -15,10 +16,15 @@ onload = function () {
     //Busca o token do usuário no Storage
     tokenJwt = sessionStorage.getItem("jwt");
 
+
     //Verifica se o token existe/é valido
     if (!tokenJwt) { //Caso NÃO seja...
 
-        alert("Você não tem permissão de acesso.")
+        Swal.fire({
+            icon: 'error',
+            title: 'Opa Opa Opa',
+            text: `Você não tem permissão de acesso`
+        })
         //Direciona o usuário para a tela de Login novamente
         location.href = "index.html";
 
@@ -127,7 +133,11 @@ function criarTarefa(novaTarefaObjectJSON) {
             window.location.reload();
         })
         .catch(error => {
-            alert(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: error
+            })
         })
 }
 
@@ -236,7 +246,11 @@ botaoNovaTarefa.addEventListener('click', event => {
     let novaTarefaObjectJSON = JSON.stringify(novaTarefaObject)
     //console.log(novaTarefaObjectJSON)
     if (novaTarefa.value.length < 5) {
-        alert('Não há novas tarefas a serem inseridas')
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `No mínimo 5 caracteres pra uma tarefa! 🙂`
+        })
     } else {
         criarTarefa(novaTarefaObjectJSON)
         novaTarefa.value = ""
@@ -245,10 +259,26 @@ botaoNovaTarefa.addEventListener('click', event => {
 
 //------------------ finalizar sessao --------------
 finalizar.addEventListener('click', () => {
-    if (confirm("Tem Certeza?")) {
+    //swal fire para deslogar
+    Swal.fire({
+        title: '',
+        text: "Quer mesmo deslogar?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Sair',
+        cancelButtonText: 'Continuar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            sessionStorage.removeItem('jwt')
+            location.href = 'index.html'
+        }
+    })
+/*     if (confirm("Tem Certeza?")) {
         sessionStorage.removeItem('jwt')
         location.href = 'index.html'
-    }
+    } */
 })
 
 function qtSkeletons() {

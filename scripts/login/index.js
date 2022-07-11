@@ -3,7 +3,7 @@ let emailInput = document.getElementById('email')
 let passwordInput = document.getElementById('password')
 let corFundoValidado = "rgb(223, 237, 236)" //'#dfedec'
 
-function limparCampos(){
+function limparCampos() {
     emailInput.value = ""
     passwordInput.value = ""
 }
@@ -159,3 +159,11 @@ buttonElement.addEventListener('click', event => {
 function removeBlankSpace(text) {
     return text.trim()
 }
+
+/* let usuarioGithub
+let tristeza = document.getElementById("tristeza")
+
+tristeza.addEventListener("click", event => {
+    event.preventDefault()
+    
+}) */

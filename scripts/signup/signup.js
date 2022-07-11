@@ -8,7 +8,7 @@ let corFundoValidado = "rgb(223, 237, 236)" //'#dfedec'
 
 //função para limpar campos
 
-function limparCampos(){
+function limparCampos() {
     nameInput.value = ""
     surnameInput.value = ""
     emailInput.value = ""
@@ -254,20 +254,19 @@ buttonElement.addEventListener('click', event => {
                     title: 'Conta Criada!',
                     text: 'Cadastro feito com sucesso!'
                 })
-                //alert("Cadastro Feito com Sucesso!")
                 ocultarSpinner()
             })
             .catch(erro => {
                 console.log(erro);
-                if(erro.status == 400){
-                 Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: `Usuario já registrado!`
-                })
+                if (erro.status == 400) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: `Usuario já registrado!`
+                    })
 
                 }
-                
+
 
                 ocultarSpinner()
             })
